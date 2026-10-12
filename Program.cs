@@ -1,1 +1,27 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using DiakApp;
+
+List<Diak> diakok =new List<Diak>();
+int hibasSorokSzama = 0;
+
+foreach (string sor in File.ReadLines("eredmenyek.csv"))
+{
+    string[] adatok = sor.Split(';');
+    if (adatok.Length != 3)
+    {
+        hibasSorokSzama++;
+        continue;
+    }
+    string nev = adatok[0].Trim();
+    string osztaly = adatok[1];
+    if (!int.TryParse(adatok[2], out int pontszam))
+    { 
+        hibasSorokSzama++; 
+        continue;  
+    }
+    if (string.IsNullOrWhiteSpace(nev) || string.IsNullOrWhiteSpace(osztaly))
+    {
+        hibasSorokSzama++;
+        continue;
+    }
+    diakok.Add(new Diak(nev, osztaly, pontszam));
+}
