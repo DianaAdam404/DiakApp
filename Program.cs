@@ -24,4 +24,9 @@ foreach (string sor in File.ReadLines("eredmenyek.csv"))
         continue;
     }
     diakok.Add(new Diak(nev, osztaly, pontszam));
+    
 }
+Console.WriteLine($"Sikeresen beolvasott diakok szama: {diakok.Count}");
+Console.WriteLine($"Hibas sorok szama:{hibasSorokSzama}");
+foreach(Diak kiir in diakok)
+{ Console.WriteLine(kiir); }
